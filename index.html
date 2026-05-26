@@ -26,6 +26,7 @@
             background-color: var(--bg-principal);
             color: var(--texto-blanco);
             padding-bottom: 40px;
+            overflow-x: hidden;
         }
 
         header {
@@ -45,6 +46,75 @@
         header h1 span {
             color: var(--acento);
         }
+
+        /* =======================================================
+           🔥 NUEVOS ESTILOS PARA LA ANIMACIÓN ESTILO ROCKSTAR 
+           ======================================================= */
+        .seccion-revelado {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 75vh; /* Espacio ideal para notar el scroll en celulares */
+            background: radial-gradient(circle at center, #131317 0%, var(--bg-principal) 100%);
+            overflow: hidden;
+            padding: 40px 20px;
+            border-bottom: 1px solid var(--borde);
+            margin-bottom: 35px;
+        }
+
+        .contenedor-animado {
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        /* Estado inicial del tenis (Oculto, abajo y de lado) */
+        .tenis-gta {
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+            opacity: 0;
+            filter: drop-shadow(0px 20px 45px rgba(255, 94, 0, 0.25)); /* Resplandor naranja */
+            transform: translateY(110px) scale(0.6) rotate(-22deg);
+            transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1); /* Movimiento fluido */
+        }
+
+        /* Estado activo (Se activa con JS al hacer scroll) */
+        .tenis-gta.aparecer {
+            opacity: 1;
+            transform: translateY(0) scale(1) rotate(-8deg); /* Queda con una inclinación estética */
+        }
+
+        /* Texto de la sección destacada */
+        .texto-revelado {
+            margin-top: 25px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+        }
+
+        .texto-revelado.aparecer {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .texto-revelado h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .texto-revelado p {
+            color: var(--acento);
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* ======================================================= */
 
         .seccion-filtros {
             max-width: 600px;
@@ -168,7 +238,7 @@
             font-weight: 700;
             margin-bottom: 8px;
             line-height: 1.3;
-            height: 2.6em; /* Mantiene alineados los botones aunque el nombre use 2 renglones */
+            height: 2.6em;
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -216,6 +286,16 @@
         <h1>Kicks <span>Catalog</span></h1>
     </header>
 
+    <section class="seccion-revelado">
+        <div class="contenedor-animado">
+            <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=600" alt="Tenis Destacado" class="tenis-gta">
+            <div class="texto-revelado">
+                <h2>DROP DE LA SEMANA</h2>
+                <p>Edición Limitada</p>
+            </div>
+        </div>
+    </section>
+
     <div class="seccion-filtros">
         <input type="text" id="buscador" class="caja-busqueda" placeholder="Buscar modelo o marca...">
         <div class="grupo-botones">
@@ -235,13 +315,9 @@
     </div>
 
     <script>
-        // CONFIGURA TU NÚMERO AQUÍ
         const MI_WHATSAPP = "521234567890"; 
-
-        // Imagen temporal para todos los modelos mientras las editas
         const IMG_TEMP = "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=500";
 
-        // LISTA MASIVA DE MODELOS DE MAYOREO
         const productos = [
             // === JORDAN ===
             { nombre: "Travis Scott Low Black Phantom", marca: "jordan", precio: 1650, calidad: "Gama Alta", img: IMG_TEMP },
@@ -338,6 +414,20 @@
                 renderarProductos();
             });
         });
+
+        // == SCRIPT SENSOR INTERSECTION OBSERVER (REVELADO DE TENIS) ==
+        const observerRockstar = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelector('.tenis-gta').classList.add('aparecer');
+                    entry.target.querySelector('.texto-revelado').classList.add('aparecer');
+                }
+            });
+        }, {
+            threshold: 0.2 // Se dispara al asomarse el 20% de la zona en pantalla
+        });
+
+        observerRockstar.observe(document.querySelector('.seccion-revelado'));
 
         renderarProductos();
     </script>
