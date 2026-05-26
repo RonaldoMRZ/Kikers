@@ -13,6 +13,8 @@
             --texto-gris: #94a3b8;
             --whatsapp-color: #25d366;
             --borde: #27272a;
+            --oro-premium: #ffd700;
+            --bg-premium: #0f0f12;
         }
 
         * {
@@ -29,88 +31,220 @@
             overflow-x: hidden;
         }
 
+        /* 🔥 HEADER CORREGIDO CON FLEXBOX: PERFECTO ARRIBA A LA DERECHA */
         header {
-            text-align: center;
-            padding: 30px 20px 15px 20px;
-            background: linear-gradient(180deg, rgba(255, 94, 0, 0.12) 0%, rgba(11, 11, 13, 0) 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: linear-gradient(180deg, rgba(255, 94, 0, 0.08) 0%, rgba(11, 11, 13, 0) 100%);
+            border-bottom: 1px solid var(--borde);
+            margin-bottom: 30px;
         }
 
         header h1 {
-            font-size: 2.3rem;
+            font-size: 1.8rem;
             font-weight: 800;
             letter-spacing: -1px;
             text-transform: uppercase;
-            margin-bottom: 8px;
         }
 
         header h1 span {
             color: var(--acento);
         }
 
+        .btn-premium-top {
+            background: linear-gradient(135deg, #ffe600 0%, #ff5e00 100%);
+            color: #000000;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 94, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .btn-premium-top:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(255, 230, 0, 0.5);
+        }
+
         /* =======================================================
-           🔥 NUEVOS ESTILOS PARA LA ANIMACIÓN ESTILO ROCKSTAR 
+           💎 MODAL CATEGORÍA EXCLUSIVA PREMIUM VIP
            ======================================================= */
-        .seccion-revelado {
+        .modal-vip {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(4, 4, 6, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 75vh; /* Espacio ideal para notar el scroll en celulares */
-            background: radial-gradient(circle at center, #131317 0%, var(--bg-principal) 100%);
-            overflow: hidden;
-            padding: 40px 20px;
-            border-bottom: 1px solid var(--borde);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-vip.activo {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .contenido-vip {
+            width: 92%;
+            max-width: 1100px;
+            height: 85vh;
+            background-color: var(--bg-premium);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            border-radius: 24px;
+            padding: 35px 25px;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.05);
+            transform: translateY(30px);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-vip.activo .contenido-vip {
+            transform: translateY(0);
+        }
+
+        .btn-cerrar-vip {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--texto-gris);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .btn-cerrar-vip:hover {
+            color: var(--oro-premium);
+        }
+
+        .encabezado-vip {
+            text-align: center;
             margin-bottom: 35px;
         }
 
-        .contenedor-animado {
+        .encabezado-vip h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #fff 0%, var(--oro-premium) 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .encabezado-vip p {
+            color: var(--texto-gris);
+            font-size: 0.95rem;
+        }
+
+        .grid-premium {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .tarjeta-premium {
+            background: linear-gradient(145deg, #1a1a22, #111115);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.08);
+            padding: 20px;
             text-align: center;
-            max-width: 500px;
-            width: 100%;
-        }
-
-        /* Estado inicial del tenis (Oculto, abajo y de lado) */
-        .tenis-gta {
-            width: 100%;
-            max-width: 380px;
-            height: auto;
+            position: relative;
+            overflow: hidden;
             opacity: 0;
-            filter: drop-shadow(0px 20px 45px rgba(255, 94, 0, 0.25)); /* Resplandor naranja */
-            transform: translateY(110px) scale(0.6) rotate(-22deg);
-            transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1); /* Movimiento fluido */
+            transform: translateY(20px);
+            transition: all 0.4s ease;
         }
 
-        /* Estado activo (Se activa con JS al hacer scroll) */
-        .tenis-gta.aparecer {
-            opacity: 1;
-            transform: translateY(0) scale(1) rotate(-8deg); /* Queda con una inclinación estética */
-        }
-
-        /* Texto de la sección destacada */
-        .texto-revelado {
-            margin-top: 25px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
-        }
-
-        .texto-revelado.aparecer {
+        .modal-vip.activo .tarjeta-premium {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .texto-revelado h2 {
-            font-size: 1.8rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
+        .tarjeta-premium:hover {
+            border-color: var(--oro-premium);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.1);
         }
 
-        .texto-revelado p {
-            color: var(--acento);
-            font-size: 0.95rem;
-            font-weight: 700;
-            letter-spacing: 3px;
+        .tarjeta-premium .img-vip-container {
+            width: 100%;
+            height: 200px;
+            background: radial-gradient(circle, #22222b 0%, #111115 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .tarjeta-premium .img-vip-container img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+        }
+
+        .tarjeta-premium:hover .img-vip-container img {
+            transform: scale(1.08) rotate(3deg);
+        }
+
+        .badge-vip {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(90deg, #000, #b59410);
+            border: 1px solid var(--oro-premium);
+            color: var(--oro-premium);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 5px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .tarjeta-premium .precio-vip {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--oro-premium);
+            margin: 12px 0;
+        }
+
+        .btn-pedido-vip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            background: linear-gradient(90deg, #b59410, #ffe600);
+            color: #000;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.9rem;
             text-transform: uppercase;
         }
 
@@ -278,23 +412,40 @@
             color: var(--texto-gris);
             font-size: 0.85rem;
         }
+
+        /* 📱 RESPONSIVO OPTIMIZADO PARA MÓVILES */
+        @media (max-width: 480px) {
+            header {
+                padding: 15px 4%;
+                margin-bottom: 20px;
+            }
+            header h1 {
+                font-size: 1.4rem;
+            }
+            .btn-premium-top {
+                padding: 8px 12px;
+                font-size: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Kicks <span>Catalog</span></h1>
+        <button id="abrir-vip" class="btn-premium-top">💎 Premium Line</button>
     </header>
 
-    <section class="seccion-revelado">
-        <div class="contenedor-animado">
-            <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=600" alt="Tenis Destacado" class="tenis-gta">
-            <div class="texto-revelado">
-                <h2>DROP DE LA SEMANA</h2>
-                <p>Edición Limitada</p>
+    <div id="modal-premium" class="modal-vip">
+        <div class="contenido-vip">
+            <button id="cerrar-vip" class="btn-cerrar-vip">&times;</button>
+            <div class="encabezado-vip">
+                <h2>💎 LUXURY SELECTION 💎</h2>
+                <p>Marcas exclusivas de alta gama importadas con la máxima calidad del mercado.</p>
             </div>
+            <div class="grid-premium" id="lista-premium"></div>
         </div>
-    </section>
+    </div>
 
     <div class="seccion-filtros">
         <input type="text" id="buscador" class="caja-busqueda" placeholder="Buscar modelo o marca...">
@@ -317,6 +468,16 @@
     <script>
         const MI_WHATSAPP = "521234567890"; 
         const IMG_TEMP = "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=500";
+        const IMG_LUXO_TEMP = "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=500";
+
+        const productosPremium = [
+            { nombre: "Louis Vuitton Maxi Trainer Monogram", marca: "Louis Vuitton", precio: 3800, calidad: "Exclusivo", img: IMG_LUXO_TEMP },
+            { nombre: "Louis Vuitton Skate Sneaker Black", marca: "Louis Vuitton", precio: 3900, calidad: "Exclusivo", img: IMG_LUXO_TEMP },
+            { nombre: "Gucci Screener Leather Vintage", marca: "Gucci", precio: 3500, calidad: "Exclusivo", img: IMG_LUXO_TEMP },
+            { nombre: "Gucci Mac80 White Red", marca: "Gucci", precio: 3400, calidad: "Exclusivo", img: IMG_LUXO_TEMP },
+            { nombre: "Balenciaga Triple S Black Neon", marca: "Balenciaga", precio: 3600, calidad: "Exclusivo", img: IMG_LUXO_TEMP },
+            { nombre: "Christian Dior B23 High Top", marca: "Dior", precio: 3750, calidad: "Exclusivo", img: IMG_LUXO_TEMP }
+        ];
 
         const productos = [
             // === JORDAN ===
@@ -343,7 +504,7 @@
             { nombre: "Air Max 97 Triple White", marca: "nike", precio: 1200, calidad: "1:1 Premium", img: IMG_TEMP },
             { nombre: "Air Max 90 Infrared", marca: "nike", precio: 1150, calidad: "1:1 Premium", img: IMG_TEMP },
             { nombre: "Nike Shox TL Triple Black", marca: "nike", precio: 1350, calidad: "Gama Alta", img: IMG_TEMP },
-            { nombre: "Nike TN Air Max Plus Black", marca: "nike", precio: 1300, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Nike TN Air Max Plus Black", marca: "nike", fontStyle: "normal", precio: 1300, calidad: "Gama Alta", img: IMG_TEMP },
 
             // === ADIDAS ===
             { nombre: "Adidas Campus 00s Core Black", marca: "adidas", precio: 900, calidad: "1:1 Premium", img: IMG_TEMP },
@@ -370,6 +531,7 @@
         const contenedor = document.getElementById('lista-tenis');
         const buscador = document.getElementById('buscador');
         const botonesFiltro = document.querySelectorAll('.btn-filtro');
+        const contenedorPremium = document.getElementById('lista-premium');
 
         let filtroMarcaActivo = 'todos';
 
@@ -378,58 +540,4 @@
             const textoBusqueda = buscador.value.toLowerCase().trim();
 
             productos.forEach(prod => {
-                const coincideTexto = prod.nombre.toLowerCase().includes(textoBusqueda) || prod.marca.toLowerCase().includes(textoBusqueda);
-                const coincideMarca = filtroMarcaActivo === 'todos' || prod.marca === filtroMarcaActivo;
-
-                if (coincideTexto && coincideMarca) {
-                    const card = document.createElement('div');
-                    card.className = 'tarjeta-tenis';
-                    card.innerHTML = `
-                        <div class="imagen-contenedor">
-                            <img src="${prod.img}" alt="${prod.nombre}">
-                            <span class="etiqueta-calidad">${prod.calidad}</span>
-                        </div>
-                        <div class="detalles-producto">
-                            <div class="marca">${prod.marca}</div>
-                            <div class="nombre-modelo">${prod.nombre}</div>
-                            <div class="precio">$${prod.precio} MXN</div>
-                            <a href="https://wa.me/${MI_WHATSAPP}?text=%C2%A1Hola!%20Me%20interesa%20pedir%20los%20${encodeURIComponent(prod.nombre)}." target="_blank" class="btn-pedido">
-                                <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.66.986 3.292 1.479 5.342 1.48 5.432 0 9.851-4.42 9.855-9.852.002-2.631-1.025-5.102-2.892-6.971C17.036 1.94 14.568.916 11.956.916c-5.438 0-9.859 4.423-9.862 9.859-.001 2.09.547 3.65 1.495 5.225L2.664 21.64l5.983-1.567zM17.52 14.33c-.302-.15-1.786-.882-2.063-.982-.277-.1-.478-.15-.68.15-.202.3-.783 1-.96 1.2-.177.2-.355.225-.657.075-.302-.15-1.276-.47-2.43-1.499-.899-.8-1.504-1.79-1.681-2.09-.177-.3-.018-.462.133-.61.135-.134.302-.35.454-.525.151-.175.202-.3.302-.5.101-.2.05-.375-.025-.525-.075-.15-.68-1.642-.932-2.247-.247-.592-.497-.512-.68-.522-.177-.009-.38-.01-.583-.01-.202 0-.532.075-.81.375-.278.3-1.062 1.039-1.062 2.535 0 1.496 1.088 2.943 1.24 3.143.151.2 2.142 3.272 5.19 4.587.725.313 1.29.5 1.73.64.729.23 1.391.198 1.916.12.584-.087 1.786-.731 2.039-1.439.252-.708.252-1.313.177-1.439-.075-.125-.277-.2-.579-.35z"/></svg>
-                                Pedir por WhatsApp
-                            </a>
-                        </div>
-                    `;
-                    contenedor.appendChild(card);
-                }
-            });
-        }
-
-        buscador.addEventListener('input', renderarProductos);
-
-        botonesFiltro.forEach(boton => {
-            boton.addEventListener('click', (e) => {
-                botonesFiltro.forEach(b => b.classList.remove('activo'));
-                e.target.classList.add('activo');
-                filtroMarcaActivo = e.target.getAttribute('data-filtro');
-                renderarProductos();
-            });
-        });
-
-        // == SCRIPT SENSOR INTERSECTION OBSERVER (REVELADO DE TENIS) ==
-        const observerRockstar = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.querySelector('.tenis-gta').classList.add('aparecer');
-                    entry.target.querySelector('.texto-revelado').classList.add('aparecer');
-                }
-            });
-        }, {
-            threshold: 0.2 // Se dispara al asomarse el 20% de la zona en pantalla
-        });
-
-        observerRockstar.observe(document.querySelector('.seccion-revelado'));
-
-        renderarProductos();
-    </script>
-</body>
-</html>
+                const coincideTexto = prod.nombre.toLowerCase().includes(textoBusqueda) || prod.marca.toLowerCase().includes(textoBus
