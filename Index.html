@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneaker Store | Catálogo Completo</title>
+    <style>
+        :root {
+            --bg-principal: #0b0b0d;
+            --bg-tarjeta: #16161a;
+            --acento: #ff5e00; 
+            --texto-blanco: #ffffff;
+            --texto-gris: #94a3b8;
+            --whatsapp-color: #25d366;
+            --borde: #27272a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-principal);
+            color: var(--texto-blanco);
+            padding-bottom: 40px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px 15px 20px;
+            background: linear-gradient(180deg, rgba(255, 94, 0, 0.12) 0%, rgba(11, 11, 13, 0) 100%);
+        }
+
+        header h1 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        header h1 span {
+            color: var(--acento);
+        }
+
+        .seccion-filtros {
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            padding: 0 20px;
+        }
+
+        .caja-busqueda {
+            width: 100%;
+            padding: 14px 20px;
+            background-color: var(--bg-tarjeta);
+            border: 1px solid var(--borde);
+            border-radius: 12px;
+            color: var(--texto-blanco);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+            margin-bottom: 15px;
+        }
+
+        .caja-busqueda:focus {
+            border-color: var(--acento);
+        }
+
+        .grupo-botones {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: none;
+        }
+
+        .grupo-botones::-webkit-scrollbar {
+            display: none;
+        }
+
+        .btn-filtro {
+            background-color: var(--bg-tarjeta);
+            color: var(--texto-gris);
+            border: 1px solid var(--borde);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .btn-filtro.activo, .btn-filtro:hover {
+            background-color: var(--acento);
+            color: var(--texto-blanco);
+            border-color: var(--acento);
+        }
+
+        .contenedor-catalogo {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .tarjeta-tenis {
+            background-color: var(--bg-tarjeta);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--borde);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .tarjeta-tenis:hover {
+            transform: translateY(-4px);
+            border-color: var(--acento);
+        }
+
+        .imagen-contenedor {
+            width: 100%;
+            height: 240px;
+            background-color: #1f1f24;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .imagen-contenedor img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+        }
+
+        .etiqueta-calidad {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: var(--acento);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .detalles-producto {
+            padding: 20px;
+        }
+
+        .marca {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--texto-gris);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .nombre-modelo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            height: 2.6em; /* Mantiene alineados los botones aunque el nombre use 2 renglones */
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .precio {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .btn-pedido {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            background-color: var(--whatsapp-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .btn-pedido svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .info-entregas {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--texto-gris);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Kicks <span>Catalog</span></h1>
+    </header>
+
+    <div class="seccion-filtros">
+        <input type="text" id="buscador" class="caja-busqueda" placeholder="Buscar modelo o marca...">
+        <div class="grupo-botones">
+            <button class="btn-filtro activo" data-filtro="todos">Todos</button>
+            <button class="btn-filtro" data-filtro="nike">Nike</button>
+            <button class="btn-filtro" data-filtro="jordan">Jordan</button>
+            <button class="btn-filtro" data-filtro="adidas">Adidas</button>
+            <button class="btn-filtro" data-filtro="new balance">New Balance</button>
+            <button class="btn-filtro" data-filtro="puma">Puma</button>
+        </div>
+    </div>
+
+    <main class="contenedor-catalogo" id="lista-tenis"></main>
+
+    <div class="info-entregas">
+        <p>📦 Catálogo con buscador y filtros en tiempo real.</p>
+    </div>
+
+    <script>
+        // CONFIGURA TU NÚMERO AQUÍ
+        const MI_WHATSAPP = "521234567890"; 
+
+        // Imagen temporal para todos los modelos mientras las editas
+        const IMG_TEMP = "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=500";
+
+        // LISTA MASIVA DE MODELOS DE MAYOREO
+        const productos = [
+            // === JORDAN ===
+            { nombre: "Travis Scott Low Black Phantom", marca: "jordan", precio: 1650, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Travis Scott Low Reverse Mocha", marca: "jordan", precio: 1650, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Travis Scott Low Olive", marca: "jordan", precio: 1650, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Travis Scott Low Canary", marca: "jordan", precio: 1650, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Jordan 4 Retro Black Cat", marca: "jordan", precio: 1500, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Jordan 4 Retro Military Blue", marca: "jordan", precio: 1550, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Jordan 4 Retro Pine Green SB", marca: "jordan", precio: 1550, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Jordan 4 Retro Bred Reimagined", marca: "jordan", precio: 1550, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Jordan 1 Retro High Chicago", marca: "jordan", precio: 1400, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Jordan 1 Mid Light Smoke Grey", marca: "jordan", precio: 1250, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Jordan 11 Retro Gratitude", marca: "jordan", precio: 1700, calidad: "Gama Alta", img: IMG_TEMP },
+
+            // === NIKE ===
+            { nombre: "Air Force 1 Low Total White", marca: "nike", precio: 850, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Air Force 1 Low Supreme White", marca: "nike", precio: 1100, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Dunk Low Panda", marca: "nike", precio: 950, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Dunk Low Grey Fog", marca: "nike", precio: 950, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Dunk Low Medium Olive", marca: "nike", precio: 950, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Dunk Low Syracuse Orange", marca: "nike", precio: 950, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Air Max 270 Triple Black", marca: "nike", precio: 1100, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Air Max 97 Triple White", marca: "nike", precio: 1200, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Air Max 90 Infrared", marca: "nike", precio: 1150, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Nike Shox TL Triple Black", marca: "nike", precio: 1350, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Nike TN Air Max Plus Black", marca: "nike", precio: 1300, calidad: "Gama Alta", img: IMG_TEMP },
+
+            // === ADIDAS ===
+            { nombre: "Adidas Campus 00s Core Black", marca: "adidas", precio: 900, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Adidas Campus 00s Crystal White", marca: "adidas", precio: 900, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Adidas Samba OG White Black", marca: "adidas", precio: 850, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Adidas Samba OG Core Black", marca: "adidas", precio: 850, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Adidas Gazelle Indoor Blue Gum", marca: "adidas", precio: 900, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Yeezy Boost 350 V2 Zebra", marca: "adidas", precio: 1400, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Yeezy Boost 350 V2 Onyx", marca: "adidas", precio: 1400, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Yeezy Slide Onyx Black", marca: "adidas", precio: 600, calidad: "1:1 Premium", img: IMG_TEMP },
+
+            // === NEW BALANCE ===
+            { nombre: "New Balance 550 White Grey", marca: "new balance", precio: 1200, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "New Balance 550 White Green", marca: "new balance", precio: 1200, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "New Balance 9060 Rain Cloud", marca: "new balance", precio: 1450, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "New Balance 2002R Protection Pack Rain Cloud", marca: "new balance", precio: 1400, calidad: "Gama Alta", img: IMG_TEMP },
+
+            // === PUMA & OTRAS ===
+            { nombre: "Puma 180 Black White", marca: "puma", precio: 950, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Puma Palermo OG Blue", marca: "puma", precio: 900, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Vans Knu Skool Black White", marca: "vans", precio: 750, calidad: "Nacional", img: IMG_TEMP }
+        ];
+
+        const contenedor = document.getElementById('lista-tenis');
+        const buscador = document.getElementById('buscador');
+        const botonesFiltro = document.querySelectorAll('.btn-filtro');
+
+        let filtroMarcaActivo = 'todos';
+
+        function renderarProductos() {
+            contenedor.innerHTML = "";
+            const textoBusqueda = buscador.value.toLowerCase().trim();
+
+            productos.forEach(prod => {
+                const coincideTexto = prod.nombre.toLowerCase().includes(textoBusqueda) || prod.marca.toLowerCase().includes(textoBusqueda);
+                const coincideMarca = filtroMarcaActivo === 'todos' || prod.marca === filtroMarcaActivo;
+
+                if (coincideTexto && coincideMarca) {
+                    const card = document.createElement('div');
+                    card.className = 'tarjeta-tenis';
+                    card.innerHTML = `
+                        <div class="imagen-contenedor">
+                            <img src="${prod.img}" alt="${prod.nombre}">
+                            <span class="etiqueta-calidad">${prod.calidad}</span>
+                        </div>
+                        <div class="detalles-producto">
+                            <div class="marca">${prod.marca}</div>
+                            <div class="nombre-modelo">${prod.nombre}</div>
+                            <div class="precio">$${prod.precio} MXN</div>
+                            <a href="https://wa.me/${MI_WHATSAPP}?text=%C2%A1Hola!%20Me%20interesa%20pedir%20los%20${encodeURIComponent(prod.nombre)}." target="_blank" class="btn-pedido">
+                                <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.66.986 3.292 1.479 5.342 1.48 5.432 0 9.851-4.42 9.855-9.852.002-2.631-1.025-5.102-2.892-6.971C17.036 1.94 14.568.916 11.956.916c-5.438 0-9.859 4.423-9.862 9.859-.001 2.09.547 3.65 1.495 5.225L2.664 21.64l5.983-1.567zM17.52 14.33c-.302-.15-1.786-.882-2.063-.982-.277-.1-.478-.15-.68.15-.202.3-.783 1-.96 1.2-.177.2-.355.225-.657.075-.302-.15-1.276-.47-2.43-1.499-.899-.8-1.504-1.79-1.681-2.09-.177-.3-.018-.462.133-.61.135-.134.302-.35.454-.525.151-.175.202-.3.302-.5.101-.2.05-.375-.025-.525-.075-.15-.68-1.642-.932-2.247-.247-.592-.497-.512-.68-.522-.177-.009-.38-.01-.583-.01-.202 0-.532.075-.81.375-.278.3-1.062 1.039-1.062 2.535 0 1.496 1.088 2.943 1.24 3.143.151.2 2.142 3.272 5.19 4.587.725.313 1.29.5 1.73.64.729.23 1.391.198 1.916.12.584-.087 1.786-.731 2.039-1.439.252-.708.252-1.313.177-1.439-.075-.125-.277-.2-.579-.35z"/></svg>
+                                Pedir por WhatsApp
+                            </a>
+                        </div>
+                    `;
+                    contenedor.appendChild(card);
+                }
+            });
+        }
+
+        buscador.addEventListener('input', renderarProductos);
+
+        botonesFiltro.forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                botonesFiltro.forEach(b => b.classList.remove('activo'));
+                e.target.classList.add('activo');
+                filtroMarcaActivo = e.target.getAttribute('data-filtro');
+                renderarProductos();
+            });
+        });
+
+        renderarProductos();
+    </script>
+</body>
+</html>
