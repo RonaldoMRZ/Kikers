@@ -31,15 +31,15 @@
             overflow-x: hidden;
         }
 
-        /* 🔥 HEADER CORREGIDO CON FLEXBOX: PERFECTO ARRIBA A LA DERECHA */
+        /* 🔥 HEADER RELATIVO PARA SOPORTAR EL BOTÓN FIJO ARRIBA A LA DERECHA */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
+            position: relative;
+            padding: 30px 5%;
             background: linear-gradient(180deg, rgba(255, 94, 0, 0.08) 0%, rgba(11, 11, 13, 0) 100%);
             border-bottom: 1px solid var(--borde);
             margin-bottom: 30px;
+            display: flex;
+            align-items: center;
         }
 
         header h1 {
@@ -53,7 +53,12 @@
             color: var(--acento);
         }
 
+        /* 💎 BOTÓN PREMIUM IMPLANTADO EXACTAMENTE ARRIBA A LA DERECHA */
         .btn-premium-top {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
             background: linear-gradient(135deg, #ffe600 0%, #ff5e00 100%);
             color: #000000;
             border: none;
@@ -70,41 +75,40 @@
             align-items: center;
             gap: 6px;
             white-space: nowrap;
+            z-index: 10;
         }
 
         .btn-premium-top:hover {
-            transform: scale(1.03);
+            transform: translateY(-50%) scale(1.03);
             box-shadow: 0 0 20px rgba(255, 230, 0, 0.5);
         }
 
         /* =======================================================
-           💎 MODAL CATEGORÍA EXCLUSIVA PREMIUM VIP
+           💎 MODAL CATEGORÍA EXCLUSIVA PREMIUM VIP (CORREGIDO)
            ======================================================= */
         .modal-vip {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(4, 4, 6, 0.92);
+            width: 100vw;
+            height: 100vh;
+            background: rgba(11, 11, 13, 0.96);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            z-index: 1000;
-            display: flex;
+            z-index: 9999; /* Asegura que se vaya hasta el frente de todo */
+            display: none; /* Corrección: Iniciamos oculto de forma nativa */
             justify-content: center;
             align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
+            padding: 15px;
         }
 
+        /* Clase activa controlada por JS */
         .modal-vip.activo {
-            opacity: 1;
-            pointer-events: auto;
+            display: flex;
         }
 
         .contenido-vip {
-            width: 92%;
+            width: 100%;
             max-width: 1100px;
             height: 85vh;
             background-color: var(--bg-premium);
@@ -113,13 +117,7 @@
             padding: 35px 25px;
             overflow-y: auto;
             position: relative;
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.05);
-            transform: translateY(30px);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .modal-vip.activo .contenido-vip {
-            transform: translateY(0);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.1);
         }
 
         .btn-cerrar-vip {
@@ -132,6 +130,7 @@
             font-size: 2rem;
             cursor: pointer;
             transition: color 0.2s;
+            z-index: 100;
         }
 
         .btn-cerrar-vip:hover {
@@ -141,6 +140,7 @@
         .encabezado-vip {
             text-align: center;
             margin-bottom: 35px;
+            padding-right: 20px;
         }
 
         .encabezado-vip h2 {
@@ -172,20 +172,13 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s ease;
-        }
-
-        .modal-vip.activo .tarjeta-premium {
-            opacity: 1;
-            transform: translateY(0);
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
         }
 
         .tarjeta-premium:hover {
             border-color: var(--oro-premium);
             transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.12);
         }
 
         .tarjeta-premium .img-vip-container {
@@ -204,7 +197,7 @@
             width: 85%;
             height: 85%;
             object-fit: contain;
-            transition: transform 0.4s ease;
+            transition: transform 0.3s ease;
         }
 
         .tarjeta-premium:hover .img-vip-container img {
@@ -413,18 +406,23 @@
             font-size: 0.85rem;
         }
 
-        /* 📱 RESPONSIVO OPTIMIZADO PARA MÓVILES */
-        @media (max-width: 480px) {
+        /* 📱 RESPONSIVO MEJORADO PARA MÓVILES */
+        @media (max-width: 520px) {
             header {
-                padding: 15px 4%;
-                margin-bottom: 20px;
-            }
-            header h1 {
-                font-size: 1.4rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+                padding: 20px 4%;
             }
             .btn-premium-top {
-                padding: 8px 12px;
-                font-size: 0.75rem;
+                position: static;
+                transform: none;
+                align-self: flex-end;
+                font-size: 0.8rem;
+                padding: 8px 14px;
+            }
+            .btn-premium-top:hover {
+                transform: scale(1.02);
             }
         }
     </style>
@@ -504,7 +502,7 @@
             { nombre: "Air Max 97 Triple White", marca: "nike", precio: 1200, calidad: "1:1 Premium", img: IMG_TEMP },
             { nombre: "Air Max 90 Infrared", marca: "nike", precio: 1150, calidad: "1:1 Premium", img: IMG_TEMP },
             { nombre: "Nike Shox TL Triple Black", marca: "nike", precio: 1350, calidad: "Gama Alta", img: IMG_TEMP },
-            { nombre: "Nike TN Air Max Plus Black", marca: "nike", fontStyle: "normal", precio: 1300, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Nike TN Air Max Plus Black", marca: "nike", precio: 1300, calidad: "Gama Alta", img: IMG_TEMP },
 
             // === ADIDAS ===
             { nombre: "Adidas Campus 00s Core Black", marca: "adidas", precio: 900, calidad: "1:1 Premium", img: IMG_TEMP },
@@ -539,5 +537,4 @@
             contenedor.innerHTML = "";
             const textoBusqueda = buscador.value.toLowerCase().trim();
 
-            productos.forEach(prod => {
-                const coincideTexto = prod.nombre.toLowerCase().includes(textoBusqueda) || prod.marca.toLowerCase().includes(textoBus
+       
