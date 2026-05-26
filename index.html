@@ -54,7 +54,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 75vh; /* Espacio ideal para notar el scroll en celulares */
+            min-height: 75vh;
             background: radial-gradient(circle at center, #131317 0%, var(--bg-principal) 100%);
             overflow: hidden;
             padding: 40px 20px;
@@ -68,24 +68,21 @@
             width: 100%;
         }
 
-        /* Estado inicial del tenis (Oculto, abajo y de lado) */
         .tenis-gta {
             width: 100%;
             max-width: 380px;
             height: auto;
             opacity: 0;
-            filter: drop-shadow(0px 20px 45px rgba(255, 94, 0, 0.25)); /* Resplandor naranja */
+            filter: drop-shadow(0px 20px 45px rgba(255, 94, 0, 0.25));
             transform: translateY(110px) scale(0.6) rotate(-22deg);
-            transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1); /* Movimiento fluido */
+            transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Estado activo (Se activa con JS al hacer scroll) */
         .tenis-gta.aparecer {
             opacity: 1;
-            transform: translateY(0) scale(1) rotate(-8deg); /* Queda con una inclinación estética */
+            transform: translateY(0) scale(1) rotate(-8deg);
         }
 
-        /* Texto de la sección destacada */
         .texto-revelado {
             margin-top: 25px;
             opacity: 0;
@@ -315,7 +312,8 @@
     </div>
 
     <script>
-        const MI_WHATSAPP = "521234567890"; 
+        // 🔥 Configurado con tu número real
+        const MI_WHATSAPP = "528113007945"; 
         const IMG_TEMP = "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=500";
 
         const productos = [
@@ -415,21 +413,10 @@
             });
         });
 
-        // == SCRIPT SENSOR INTERSECTION OBSERVER (REVELADO DE TENIS) ==
+        // == SCRIPT SENSOR INTERSECTION OBSERVER ==
         const observerRockstar = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     entry.target.querySelector('.tenis-gta').classList.add('aparecer');
                     entry.target.querySelector('.texto-revelado').classList.add('aparecer');
-                }
-            });
-        }, {
-            threshold: 0.2 // Se dispara al asomarse el 20% de la zona en pantalla
-        });
-
-        observerRockstar.observe(document.querySelector('.seccion-revelado'));
-
-        renderarProductos();
-    </script>
-</body>
-</html>
+        
