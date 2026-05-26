@@ -13,8 +13,6 @@
             --texto-gris: #94a3b8;
             --whatsapp-color: #25d366;
             --borde: #27272a;
-            --oro-premium: #ffd700;
-            --bg-premium: #0f0f12;
         }
 
         * {
@@ -32,209 +30,92 @@
         }
 
         header {
-            position: relative;
-            padding: 30px 5%;
-            background: linear-gradient(180deg, rgba(255, 94, 0, 0.08) 0%, rgba(11, 11, 13, 0) 100%);
-            border-bottom: 1px solid var(--borde);
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
+            text-align: center;
+            padding: 30px 20px 15px 20px;
+            background: linear-gradient(180deg, rgba(255, 94, 0, 0.12) 0%, rgba(11, 11, 13, 0) 100%);
         }
 
         header h1 {
-            font-size: 1.8rem;
+            font-size: 2.3rem;
             font-weight: 800;
             letter-spacing: -1px;
             text-transform: uppercase;
+            margin-bottom: 8px;
         }
 
         header h1 span {
             color: var(--acento);
         }
 
-        .btn-premium-top {
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, #ffe600 0%, #ff5e00 100%);
-            color: #000000;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 20px;
-            font-weight: 800;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(255, 94, 0, 0.3);
-            transition: transform 0.2s, box-shadow 0.2s;
+        /* =======================================================
+           🔥 NUEVOS ESTILOS PARA LA ANIMACIÓN ESTILO ROCKSTAR 
+           ======================================================= */
+        .seccion-revelado {
             display: flex;
-            align-items: center;
-            gap: 6px;
-            white-space: nowrap;
-            z-index: 10;
-        }
-
-        .btn-premium-top:hover {
-            transform: translateY(-50%) scale(1.03);
-            box-shadow: 0 0 20px rgba(255, 230, 0, 0.5);
-        }
-
-        /* MODAL VIP */
-        .modal-vip {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(11, 11, 13, 0.96);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 9999;
-            display: none;
             justify-content: center;
             align-items: center;
-            padding: 15px;
-        }
-
-        .modal-vip.activo {
-            display: flex;
-        }
-
-        .contenido-vip {
-            width: 100%;
-            max-width: 1100px;
-            height: 85vh;
-            background-color: var(--bg-premium);
-            border: 1px solid rgba(255, 215, 0, 0.25);
-            border-radius: 24px;
-            padding: 35px 25px;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.1);
-        }
-
-        .btn-cerrar-vip {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: var(--texto-gris);
-            font-size: 2rem;
-            cursor: pointer;
-            z-index: 100;
-        }
-
-        .btn-cerrar-vip:hover {
-            color: var(--oro-premium);
-        }
-
-        .encabezado-vip {
-            text-align: center;
+            min-height: 75vh; /* Espacio ideal para notar el scroll en celulares */
+            background: radial-gradient(circle at center, #131317 0%, var(--bg-principal) 100%);
+            overflow: hidden;
+            padding: 40px 20px;
+            border-bottom: 1px solid var(--borde);
             margin-bottom: 35px;
         }
 
-        .encabezado-vip h2 {
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, #fff 0%, var(--oro-premium) 50%, #fff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
-
-        .grid-premium {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        /* 🚀 ANIMACIÓN INTEGRADA DIRECTAMENTE AQUÍ PARA LAS TARJETAS */
-        @keyframes aparecerTarjeta {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .tarjeta-premium {
-            background: linear-gradient(145deg, #1a1a22, #111115);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 215, 0, 0.08);
-            padding: 20px;
+        .contenedor-animado {
             text-align: center;
-            position: relative;
-            overflow: hidden;
-            animation: aparecerTarjeta 0.4s ease-out forwards;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-
-        .tarjeta-premium:hover {
-            border-color: var(--oro-premium);
-            transform: translateY(-4px);
-        }
-
-        .img-vip-container {
+            max-width: 500px;
             width: 100%;
-            height: 200px;
-            background: radial-gradient(circle, #22222b 0%, #111115 100%);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
         }
 
-        .img-vip-container img {
-            width: 85%;
-            height: 85%;
-            object-fit: contain;
+        /* Estado inicial del tenis (Oculto, abajo y de lado) */
+        .tenis-gta {
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+            opacity: 0;
+            filter: drop-shadow(0px 20px 45px rgba(255, 94, 0, 0.25)); /* Resplandor naranja */
+            transform: translateY(110px) scale(0.6) rotate(-22deg);
+            transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1); /* Movimiento fluido */
         }
 
-        .badge-vip {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: linear-gradient(90deg, #000, #b59410);
-            border: 1px solid var(--oro-premium);
-            color: var(--oro-premium);
-            font-size: 0.7rem;
-            font-weight: 800;
-            padding: 5px 10px;
-            border-radius: 6px;
+        /* Estado activo (Se activa con JS al hacer scroll) */
+        .tenis-gta.aparecer {
+            opacity: 1;
+            transform: translateY(0) scale(1) rotate(-8deg); /* Queda con una inclinación estética */
+        }
+
+        /* Texto de la sección destacada */
+        .texto-revelado {
+            margin-top: 25px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+        }
+
+        .texto-revelado.aparecer {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .texto-revelado h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .texto-revelado p {
+            color: var(--acento);
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 3px;
             text-transform: uppercase;
         }
 
-        .precio-vip {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--oro-premium);
-            margin: 12px 0;
-        }
+        /* ======================================================= */
 
-        .btn-pedido-vip {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            background: linear-gradient(90deg, #b59410, #ffe600);
-            color: #000;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 800;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-        }
-
-        /* FILTROS Y BUSCADOR */
         .seccion-filtros {
             max-width: 600px;
             margin: 0 auto 30px auto;
@@ -250,6 +131,7 @@
             color: var(--texto-blanco);
             font-size: 1rem;
             outline: none;
+            transition: border-color 0.2s;
             margin-bottom: 15px;
         }
 
@@ -262,6 +144,7 @@
             gap: 10px;
             overflow-x: auto;
             padding-bottom: 5px;
+            scrollbar-width: none;
         }
 
         .grupo-botones::-webkit-scrollbar {
@@ -287,7 +170,6 @@
             border-color: var(--acento);
         }
 
-        /* CATÁLOGO PRINCIPAL */
         .contenedor-catalogo {
             max-width: 1200px;
             margin: 0 auto;
@@ -302,7 +184,6 @@
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--borde);
-            animation: aparecerTarjeta 0.4s ease-out forwards; /* 👈 Animación aquí */
             transition: transform 0.2s, border-color 0.2s;
         }
 
@@ -348,6 +229,7 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             color: var(--texto-gris);
+            letter-spacing: 1px;
             margin-bottom: 4px;
         }
 
@@ -355,6 +237,7 @@
             font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 8px;
+            line-height: 1.3;
             height: 2.6em;
             overflow: hidden;
             display: -webkit-box;
@@ -380,6 +263,7 @@
             padding: 12px;
             border-radius: 10px;
             font-weight: 700;
+            font-size: 0.95rem;
         }
 
         .btn-pedido svg {
@@ -394,39 +278,23 @@
             color: var(--texto-gris);
             font-size: 0.85rem;
         }
-
-        @media (max-width: 520px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-                padding: 20px 4%;
-            }
-            .btn-premium-top {
-                position: static;
-                transform: none;
-                align-self: flex-end;
-            }
-        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Kicks <span>Catalog</span></h1>
-        <button id="abrir-vip" class="btn-premium-top">💎 Premium Line</button>
     </header>
 
-    <div id="modal-premium" class="modal-vip">
-        <div class="contenido-vip">
-            <button id="cerrar-vip" class="btn-cerrar-vip">&times;</button>
-            <div class="encabezado-vip">
-                <h2>💎 LUXURY SELECTION 💎</h2>
-                <p>Marcas exclusivas de alta gama importadas con la máxima calidad.</p>
+    <section class="seccion-revelado">
+        <div class="contenedor-animado">
+            <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=600" alt="Tenis Destacado" class="tenis-gta">
+            <div class="texto-revelado">
+                <h2>DROP DE LA SEMANA</h2>
+                <p>Edición Limitada</p>
             </div>
-            <div class="grid-premium" id="lista-premium"></div>
         </div>
-    </div>
+    </section>
 
     <div class="seccion-filtros">
         <input type="text" id="buscador" class="caja-busqueda" placeholder="Buscar modelo o marca...">
@@ -447,43 +315,61 @@
     </div>
 
     <script>
-        // Pone tu teléfono real aquí (Código de país + número, ej: 5281XXXXXXXX)
         const MI_WHATSAPP = "521234567890"; 
-        
-        // Imágenes temporales de muestra
         const IMG_TEMP = "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=500";
-        const IMG_LUXO_TEMP = "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=500";
-
-        const productosPremium = [
-            { nombre: "Louis Vuitton Maxi Trainer Monogram", marca: "Louis Vuitton", precio: 3800, calidad: "Exclusivo", img: IMG_LUXO_TEMP },
-            { nombre: "Louis Vuitton Skate Sneaker Black", marca: "Louis Vuitton", precio: 3900, calidad: "Exclusivo", img: IMG_LUXO_TEMP },
-            { nombre: "Gucci Screener Leather Vintage", marca: "Gucci", precio: 3500, calidad: "Exclusivo", img: IMG_LUXO_TEMP }
-        ];
 
         const productos = [
             // === JORDAN ===
             { nombre: "Travis Scott Low Black Phantom", marca: "jordan", precio: 1650, calidad: "Gama Alta", img: IMG_TEMP },
             { nombre: "Travis Scott Low Reverse Mocha", marca: "jordan", precio: 1650, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Travis Scott Low Olive", marca: "jordan", precio: 1650, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Travis Scott Low Canary", marca: "jordan", precio: 1650, calidad: "Gama Alta", img: IMG_TEMP },
             { nombre: "Jordan 4 Retro Black Cat", marca: "jordan", precio: 1500, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Jordan 4 Retro Military Blue", marca: "jordan", precio: 1550, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Jordan 4 Retro Pine Green SB", marca: "jordan", precio: 1550, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Jordan 4 Retro Bred Reimagined", marca: "jordan", precio: 1550, calidad: "Gama Alta", img: IMG_TEMP },
             { nombre: "Jordan 1 Retro High Chicago", marca: "jordan", precio: 1400, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Jordan 1 Mid Light Smoke Grey", marca: "jordan", precio: 1250, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Jordan 11 Retro Gratitude", marca: "jordan", precio: 1700, calidad: "Gama Alta", img: IMG_TEMP },
 
             // === NIKE ===
             { nombre: "Air Force 1 Low Total White", marca: "nike", precio: 850, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Air Force 1 Low Supreme White", marca: "nike", precio: 1100, calidad: "1:1 Premium", img: IMG_TEMP },
             { nombre: "Dunk Low Panda", marca: "nike", precio: 950, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Dunk Low Grey Fog", marca: "nike", precio: 950, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Dunk Low Medium Olive", marca: "nike", precio: 950, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Dunk Low Syracuse Orange", marca: "nike", precio: 950, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Air Max 270 Triple Black", marca: "nike", precio: 1100, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Air Max 97 Triple White", marca: "nike", precio: 1200, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Air Max 90 Infrared", marca: "nike", precio: 1150, calidad: "1:1 Premium", img: IMG_TEMP },
             { nombre: "Nike Shox TL Triple Black", marca: "nike", precio: 1350, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Nike TN Air Max Plus Black", marca: "nike", precio: 1300, calidad: "Gama Alta", img: IMG_TEMP },
 
             // === ADIDAS ===
             { nombre: "Adidas Campus 00s Core Black", marca: "adidas", precio: 900, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Adidas Campus 00s Crystal White", marca: "adidas", precio: 900, calidad: "1:1 Premium", img: IMG_TEMP },
             { nombre: "Adidas Samba OG White Black", marca: "adidas", precio: 850, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Adidas Samba OG Core Black", marca: "adidas", precio: 850, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Adidas Gazelle Indoor Blue Gum", marca: "adidas", precio: 900, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Yeezy Boost 350 V2 Zebra", marca: "adidas", precio: 1400, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Yeezy Boost 350 V2 Onyx", marca: "adidas", precio: 1400, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "Yeezy Slide Onyx Black", marca: "adidas", precio: 600, calidad: "1:1 Premium", img: IMG_TEMP },
 
             // === NEW BALANCE ===
-            { nombre: "New Balance 9060 Rain Cloud", marca: "new balance", precio: 1450, calidad: "Gama Alta", img: IMG_TEMP }
+            { nombre: "New Balance 550 White Grey", marca: "new balance", precio: 1200, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "New Balance 550 White Green", marca: "new balance", precio: 1200, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "New Balance 9060 Rain Cloud", marca: "new balance", precio: 1450, calidad: "Gama Alta", img: IMG_TEMP },
+            { nombre: "New Balance 2002R Protection Pack Rain Cloud", marca: "new balance", precio: 1400, calidad: "Gama Alta", img: IMG_TEMP },
+
+            // === PUMA & OTRAS ===
+            { nombre: "Puma 180 Black White", marca: "puma", precio: 950, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Puma Palermo OG Blue", marca: "puma", precio: 900, calidad: "1:1 Premium", img: IMG_TEMP },
+            { nombre: "Vans Knu Skool Black White", marca: "vans", precio: 750, calidad: "Nacional", img: IMG_TEMP }
         ];
 
         const contenedor = document.getElementById('lista-tenis');
         const buscador = document.getElementById('buscador');
         const botonesFiltro = document.querySelectorAll('.btn-filtro');
-        const contenedorPremium = document.getElementById('lista-premium');
 
         let filtroMarcaActivo = 'todos';
 
@@ -518,27 +404,6 @@
             });
         }
 
-        function renderarPremium() {
-            contenedorPremium.innerHTML = "";
-            productosPremium.forEach((prod) => {
-                const card = document.createElement('div');
-                card.className = 'tarjeta-premium';
-                card.innerHTML = `
-                    <span class="badge-vip">${prod.calidad}</span>
-                    <div class="img-vip-container">
-                        <img src="${prod.img}" alt="${prod.nombre}">
-                    </div>
-                    <div class="marca" style="color: var(--oro-premium); font-weight: 700;">${prod.marca}</div>
-                    <div class="nombre-modelo" style="height: auto; margin-bottom: 5px;">${prod.nombre}</div>
-                    <div class="precio-vip">$${prod.precio} MXN</div>
-                    <a href="https://wa.me/${MI_WHATSAPP}?text=%C2%A1Hola!%20Me%20interesa%20el%20modelo%20VIP%20exclusivo:%20${encodeURIComponent(prod.nombre)}." target="_blank" class="btn-pedido-vip">
-                        Adquirir Pieza VIP
-                    </a>
-                `;
-                contenedorPremium.appendChild(card);
-            });
-        }
-
         buscador.addEventListener('input', renderarProductos);
 
         botonesFiltro.forEach(boton => {
@@ -550,11 +415,21 @@
             });
         });
 
-        const modalVip = document.getElementById('modal-premium');
-        const btnAbrirVip = document.getElementById('abrir-vip');
-        const btnCerrarVip = document.getElementById('cerrar-vip');
+        // == SCRIPT SENSOR INTERSECTION OBSERVER (REVELADO DE TENIS) ==
+        const observerRockstar = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelector('.tenis-gta').classList.add('aparecer');
+                    entry.target.querySelector('.texto-revelado').classList.add('aparecer');
+                }
+            });
+        }, {
+            threshold: 0.2 // Se dispara al asomarse el 20% de la zona en pantalla
+        });
 
-        btnAbrirVip.addEventListener('click', () => {
-            renderarPremium();
-            modalVip.classList.add('activo');
-         
+        observerRockstar.observe(document.querySelector('.seccion-revelado'));
+
+        renderarProductos();
+    </script>
+</body>
+</html>
