@@ -31,16 +31,15 @@
 
         header {
             text-align: center;
-            padding: 30px 20px 15px 20px;
+            padding: 25px 20px 10px 20px;
             background: linear-gradient(180deg, rgba(255, 94, 0, 0.12) 0%, rgba(11, 11, 13, 0) 100%);
         }
 
         header h1 {
-            font-size: 2.3rem;
+            font-size: 2.1rem;
             font-weight: 800;
             letter-spacing: -1px;
             text-transform: uppercase;
-            margin-bottom: 8px;
         }
 
         header h1 span {
@@ -48,55 +47,65 @@
         }
 
         /* =======================================================
-           🔥 NUEVOS ESTILOS PARA LA ANIMACIÓN ESTILO ROCKSTAR 
+           🔥 ANIMACIÓN ESTILO ROCKSTAR EN CSS PURO (SIN JS) 
            ======================================================= */
+        @keyframes entradaTenis {
+            0% {
+                opacity: 0;
+                transform: translateY(60px) scale(0.7) rotate(-22deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotate(-8deg);
+            }
+        }
+
+        @keyframes entradaTexto {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .seccion-revelado {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 75vh;
+            min-height: 55vh; /* Altura optimizada para que no tape todo el celular */
             background: radial-gradient(circle at center, #131317 0%, var(--bg-principal) 100%);
             overflow: hidden;
-            padding: 40px 20px;
+            padding: 20px;
             border-bottom: 1px solid var(--borde);
-            margin-bottom: 35px;
+            margin-bottom: 30px;
         }
 
         .contenedor-animado {
             text-align: center;
-            max-width: 500px;
+            max-width: 450px;
             width: 100%;
         }
 
+        /* El tenis ahora se anima solo al cargar la página */
         .tenis-gta {
             width: 100%;
-            max-width: 380px;
+            max-width: 340px;
             height: auto;
-            opacity: 0;
-            filter: drop-shadow(0px 20px 45px rgba(255, 94, 0, 0.25));
-            transform: translateY(110px) scale(0.6) rotate(-22deg);
-            transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: drop-shadow(0px 20px 45px rgba(255, 94, 0, 0.3)); 
+            animation: entradaTenis 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .tenis-gta.aparecer {
-            opacity: 1;
-            transform: translateY(0) scale(1) rotate(-8deg);
-        }
-
+        /* El texto también se anima solo con un pequeño retraso */
         .texto-revelado {
-            margin-top: 25px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
-        }
-
-        .texto-revelado.aparecer {
-            opacity: 1;
-            transform: translateY(0);
+            margin-top: 15px;
+            animation: entradaTexto 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
         }
 
         .texto-revelado h2 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -105,12 +114,11 @@
 
         .texto-revelado p {
             color: var(--acento);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 700;
             letter-spacing: 3px;
             text-transform: uppercase;
         }
-
         /* ======================================================= */
 
         .seccion-filtros {
@@ -312,7 +320,7 @@
     </div>
 
     <script>
-        // 🔥 Configurado con tu número real
+        // Número de WhatsApp guardado correctamente
         const MI_WHATSAPP = "528113007945"; 
         const IMG_TEMP = "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=500";
 
@@ -413,10 +421,8 @@
             });
         });
 
-        // == SCRIPT SENSOR INTERSECTION OBSERVER ==
-        const observerRockstar = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.querySelector('.tenis-gta').classList.add('aparecer');
-                    entry.target.querySelector('.texto-revelado').classList.add('aparecer');
-        
+        // Ejecución inmediata garantizada
+        renderarProductos();
+    </script>
+</body>
+</html>
